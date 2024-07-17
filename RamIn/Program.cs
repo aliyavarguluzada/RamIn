@@ -24,14 +24,14 @@ namespace RamIn
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             ComputerInfo CI = new ComputerInfo();
-            ulong mem = ulong.Parse(CI.TotalPhysicalMemory.ToString());
-            var total = (mem / (1024 * 1024) + " MB").ToString();
+            ulong totalMemory = ulong.Parse(CI.TotalPhysicalMemory.ToString());
+            var total = (totalMemory / (1024 * 1024) + " MB").ToString();
 
-            ulong available1 = ulong.Parse(CI.AvailablePhysicalMemory.ToString());
-            var available = (available1 / (1024 * 1024) + " MB").ToString();
+            ulong availableMemory = ulong.Parse(CI.AvailablePhysicalMemory.ToString());
+            var available = (availableMemory / (1024 * 1024) + " MB").ToString();
 
-            var use = mem - available1;
-            var used = (use / (1024 * 1024) + " MB").ToString();
+            var usedMemory = totalMemory - availableMemory;
+            var used = (usedMemory / (1024 * 1024) + " MB").ToString();
 
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
