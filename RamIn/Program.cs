@@ -25,24 +25,24 @@ namespace RamIn
         {
             ComputerInfo CI = new ComputerInfo();
             ulong mem = ulong.Parse(CI.TotalPhysicalMemory.ToString());
-            var a = (mem / (1024 * 1024) + " MB").ToString();
+            var total = (mem / (1024 * 1024) + " MB").ToString();
 
-            ulong available = ulong.Parse(CI.AvailablePhysicalMemory.ToString());
-            var b = (available / (1024 * 1024) + " MB").ToString();
+            ulong available1 = ulong.Parse(CI.AvailablePhysicalMemory.ToString());
+            var available = (available1 / (1024 * 1024) + " MB").ToString();
 
-            var used = mem - available;
-            var us = (used / (1024 * 1024) + " MB").ToString();
+            var use = mem - available1;
+            var used = (use / (1024 * 1024) + " MB").ToString();
 
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
                 writer.WriteLine($"Timestamp: {DateTime.Now}");
-                writer.WriteLine($"Total Memory: {a}");
-                writer.WriteLine($"Available Memory: {b}");
-                writer.WriteLine($"Used Memory: {us}");
+                writer.WriteLine($"Total Memory: {total}");
+                writer.WriteLine($"Available Memory: {available}");
+                writer.WriteLine($"Used Memory: {used}");
                 writer.WriteLine(new string('-', 50));
             }
 
-            Console.WriteLine($"Timestamp: {DateTime.Now}, Total Memory: {a},Available Memory: {b}, Used Memory: {us}");
+            Console.WriteLine($"Timestamp: {DateTime.Now}, Total Memory: {total},Available Memory: {available}, Used Memory: {used}");
         }
     }
 
